@@ -1,0 +1,22 @@
+FROM deepseekr1:1.5b  # Replace with the actual base model you want to use
+
+PARAMETER {
+  "max_tokens": 150,
+  "temperature": 0.7,
+  "top_p": 0.9
+}
+
+TEMPLATE "Hello {user_name}, here is your AI response: {input}"
+
+SYSTEM "Welcome to the KAI AI system. I'm here to assist you with various tasks."
+
+ADAPTER {
+  "adapter_name": "default_adapter"
+}
+
+LICENSE "Licensed under the MIT License."
+
+MESSAGE {
+  "role": "system",
+  "content": "The AI system is initialized and ready to assist you."
+}
