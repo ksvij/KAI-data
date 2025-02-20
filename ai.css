@@ -1,0 +1,111 @@
+body {
+    font-family: 'Roboto', sans-serif; /* Use custom font */
+    margin: 0;
+    background-color: #1e1e1e; /* Dark background color */
+    display: flex;
+    justify-content: center;
+}
+
+#logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#logo {
+    max-width: 80px; /* Adjust logo size */
+    border-radius: 50%; /* Round logo */
+}
+
+.container {
+    max-width: 1000px;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #1e1e1e; /* Dark background for the container */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the text in the header */
+    background-color: #272727; /* Slightly lighter background for the header */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #00ffb3; /* White text color */
+    margin: 0; /* Remove default margin */
+}
+
+#chatbox {
+    display: flex;
+    flex-direction: column;
+    height: 650px; /* Increased height for chatbox */
+    width: 1000px; /* Full width for chatbox */
+    overflow: hidden;
+    border: 1px solid #333333;
+    border-radius: 8px;
+}
+
+#messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #1a1a1a; /* Dark background for messages */
+}
+
+#input-container {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #333333;
+    padding: 10px;
+    background-color: #272727; /* Slightly lighter background for input container */
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 16px;
+    background-color: #2b2b2b; /* Dark input background */
+    color: #ffffff; /* White text color */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button color */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+#thinking {
+    margin-left: 10px;
+}
+
+#messages div {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #333333; /* Dark background for messages */
+    color: #57ffc7; /* White text color */
+    max-width: 80%;
+}
+
+#messages div:nth-child(even) {
+    background-color: #444444; /* Slightly lighter background for alternating messages */
+}
