@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAI-Local Server</title>
+    <title>AI Chat</title>
     <link rel="stylesheet" href="ai.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Add your favicon here -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Add custom fonts -->
 </head>
 <body>
-    <div id="logo-container">
-        <img id="logo" src="logo.png" alt="Logo"> <!-- Add your logo here -->
+    <div class="logo-container">
+        <img src="logo.png" id="logo" alt="Logo">
     </div>
-    <div class="container">
+    <div class="chat-container">
         <header>
-            <h1>--- KAI ---</h1>
+            <h2>Chat with KAI</h2>
         </header>
-        <div id="chatbox">
-            <div id="messages"></div>
-            <div id="input-container">
-                <input type="text" id="user-input" placeholder="Type your message here...">
-                <button onclick="sendMessage()">Send</button>
-                <div id="thinking" style="display: none;">
-                    <img src="thinking.gif" alt="Thinking...">
-                </div>
-            </div>
+        <div class="chat-window">
+            <div class="chat-messages" id="chat-messages"></div>
+        </div>
+        <div class="chat-input">
+            <textarea id="user-input" placeholder="Type a message..."></textarea>
+            <button id="send-button">Send</button>
         </div>
     </div>
     <script src="ai.js"></script>

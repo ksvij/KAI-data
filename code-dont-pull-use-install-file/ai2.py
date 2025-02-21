@@ -34,12 +34,12 @@ def favicon():
 async def run_deepseek(user_input):
     # Check if the user is asking for the AI's name
     if re.search(r'\b(your name|who are you|what is your name|introduce yourself|what should I call you|may I know your name)\b', user_input, re.IGNORECASE):
-        return "I am KAI, built by Kshiraj Vij on 16 Feb 2025."
+        return "**I am KAI**, built by **Kshiraj Vij** on **16 Feb 2025**."
 
     try:
         print("Running subprocess for input:", user_input)  # Logging the input
         process = await asyncio.create_subprocess_exec(
-            'ollama', 'run', f'deepseek-r1:1.5b', user_input,
+            'ollama', 'run', 'deepseek-r1:1.5b', user_input,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
@@ -49,8 +49,17 @@ async def run_deepseek(user_input):
         output = stdout.decode().strip()
         # Remove <think> tags using regex
         output = re.sub(r'</?think>', '', output)
+        # Make any text enclosed in ** bold
+        output = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', output)
+        # Example formatting for math expressions (corrected regex)
+        output = re.sub(r'\[([^\]]+)\]', r'\\(\1\\)', output)
+        output = output.replace('Step 1:', '**Step 1:**')
+        output = output.replace('Step 2:', '**Step 2:**')
+        output = output.replace('Step 3:', '**Step 3:**')
+        output = output.replace('Step 4:', '**Step 4:**')
+        output = output.replace('So, the result of the expression is:', '**So, the result of the expression is:**')
         if stderr:
-            print("Subprocess result after tag removal:", output)  # Detailed logging after tag removal
+            print("Subprocess result after tag removal and formatting:", output)  # Detailed logging after tag removal and formatting
         else:
             print("Subprocess error:", stderr.decode())  # Detailed error logging
             output = "An error occurred while processing your request."
