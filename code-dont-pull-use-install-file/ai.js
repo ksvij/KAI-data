@@ -1,3 +1,6 @@
+// Store conversation history
+let conversationHistory = [];
+
 // Function to add messages to the chat window with appropriate classes
 function addMessageToChat(content, sender) {
     const chatMessages = document.getElementById('chat-messages');
@@ -8,7 +11,7 @@ function addMessageToChat(content, sender) {
     content = content.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
 
     // Process math expressions (using LaTeX delimiters)
-    content = content.replace(/\\\[(.*?)\\\]/g, '<span class="math">$1</span>');
+    content = content.replace(/\\\[(.*?)\\\]/g, '<span class="math">\\($1\\)</span>');
 
     messageElement.innerHTML = content;
     chatMessages.appendChild(messageElement);
@@ -24,6 +27,9 @@ document.getElementById('send-button').addEventListener('click', async () => {
     addMessageToChat(userInput, 'user');
     document.getElementById('user-input').value = '';
 
+    // Add user's message to conversation history
+    conversationHistory.push({ role: 'user', content: userInput });
+
     // Show typing indicator
     const typingIndicator = document.createElement('div');
     typingIndicator.classList.add('chat-message', 'ai');
@@ -32,12 +38,12 @@ document.getElementById('send-button').addEventListener('click', async () => {
     document.getElementById('chat-messages').appendChild(typingIndicator);
     document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
 
-    // Send user's message to the server
+    // Send user's message and conversation history to the server
     try {
         const response = await fetch('/deepseek', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ input: userInput })
+            body: JSON.stringify({ messages: conversationHistory })
         });
 
         const data = await response.json();
@@ -47,6 +53,9 @@ document.getElementById('send-button').addEventListener('click', async () => {
 
         // Display AI's message
         addMessageToChat(data.output, 'ai');
+
+        // Add AI's message to conversation history
+        conversationHistory.push({ role: 'ai', content: data.output });
 
     } catch (error) {
         console.error('Error:', error);

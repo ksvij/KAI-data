@@ -35,6 +35,8 @@ pip3 install virtualenv --break-system-packages
 echo "Creating directory for the repository..."
 mkdir -p $REPO_DIR
 
+echo "Installing UI"
+pip install psutil --break-system-packages
 # Clone the repository
 echo "Cloning the repository..."
 git clone $REPO_URL $REPO_DIR
@@ -57,6 +59,7 @@ pip install --upgrade pip
 # Install Flask and flask_cors
 echo "Installing Flask and flask_cors..."
 pip install "Flask[async]" flask_cors --break-system-packages
+
 
 # Reinstall DeepSeek
 echo "Reinstalling DeepSeek..."

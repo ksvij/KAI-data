@@ -35,6 +35,8 @@ REM Upgrade pip inside the virtual environment
 echo Upgrading pip...
 pip install --upgrade pip
 
+echo Installing UI 
+pip install psutil --break-system-packages
 REM Install Flask and flask_cors
 echo Installing Flask and flask_cors...
 pip install Flask[async] flask_cors
