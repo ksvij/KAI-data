@@ -41,8 +41,8 @@ def generate_text_with_cohere(messages):
         response = co.generate(
             model='command-xlarge-nightly',  # You can specify the model name
             prompt=conversation_history + "\nai:",
-            max_tokens=15000,  # Set the max tokens as needed
-            temperature=0.5,
+            max_tokens=1500,  # Set the max tokens as needed
+            temperature=0.3,
             k=0,
             p=0.75,
             stop_sequences=["\nuser:"]
